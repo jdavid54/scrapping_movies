@@ -160,7 +160,7 @@ for name,url,image,fanart in match2[5:n]:
                 
                        
     #print(buffer)
-    buffer += '</body></html>'
+buffer += '</body></html>'
     
 # saving
 print("Saving html page ...")
