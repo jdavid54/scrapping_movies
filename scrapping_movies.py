@@ -125,10 +125,10 @@ figure {
 print(len(match2), 'free movies')
 
 # get n movies and create html page
-n = 50
-for name,url,image,fanart in match2[5:n]:
+n = 1000
+for i,(name,url,image,fanart) in enumerate(match2[5:n]):
     #print(name,url,image,fanart)
-    
+    if i%10==0: print('\r',i,'/',n,end='')
     if '<sublink>' in url: 
             if fanart == '<':
                 fanart = FANART
@@ -148,21 +148,18 @@ for name,url,image,fanart in match2[5:n]:
                         image='https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
                     else:
                         no_image = False
-                except:
-                    
+                except:                    
                     no_image = True
                     #replace invalid image
                     image='https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
                
                 buffer+='<figure class="swap-on-hover">'
                 buffer+='<img class="swap-on-hover__front-image" src="'+image+'"/>'
-                buffer+='<div class="swap-on-hover__back-image">'+url+'</div> </figure>\n'                                        
-                
-                       
+                buffer+='<div class="swap-on-hover__back-image">'+url+'</div> </figure>\n'                                                               
     #print(buffer)
 buffer += '</body></html>'
     
 # saving
-print("Saving html page ...")
+print("\nSaving html page ...")
 with open('movies.html', 'w') as fp:
     fp.write(buffer)
