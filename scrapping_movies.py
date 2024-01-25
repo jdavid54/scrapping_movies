@@ -27,14 +27,19 @@ def new_render(url, name):
     return result, name
 
 #headers
-from headers import buffer
+#from headers import buffer
 
+
+buffer = '''<html><head><link href="movies.css" rel="stylesheet" /></head>
+<body>
+<h1>Free movies
+<br>Better viewed with Brave : https://brave.com/</h1>'''
 # show result
-print(len(match2), 'free movies')
+print(len(match2)-5, 'free movies')
 
 # get n movies and create html page
 n = len(match2)
-for i,(name,url,image,fanart) in enumerate(match2[:n+1]):
+for i,(name,url,image,fanart) in enumerate(match2[5:n+1]):
     #print(name,url,image,fanart)
     if i%10==0: print('\r',i,'/',n,end='')
     if '<sublink>' in url: 
@@ -69,5 +74,5 @@ buffer += '</body></html>'
 #buffer=buffer.replace('┊','')   # error charmap   
 # saving
 print("\nSaving html page ...")
-with open('test.html', 'w') as fp:
+with open('movies.html', 'w') as fp:
     fp.write(buffer)
